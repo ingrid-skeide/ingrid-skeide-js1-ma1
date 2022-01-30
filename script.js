@@ -20,7 +20,7 @@ const cat = {
 }
 
 // Question 2
-let heading = document.querySelector("h3");
+const heading = document.querySelector("h3");
 
 heading.innerHTML = "Updated heading";
 
@@ -31,7 +31,7 @@ heading.style.fontSize = "2em";
 heading.className = "subheading";
 
 // Question 5
-let paragraphs = document.querySelectorAll("p");
+const paragraphs = document.querySelectorAll("p");
 
 for (let i=0; i<paragraphs.length; i++) {
     paragraphs[i].style.color = "red";
@@ -53,18 +53,24 @@ function nameList(list) {
 nameList(cats);
 
 // Question 8
+
 function createCats(cats) {
-    let catsContainer = "";
-    for (let i=0; i<cats.length; i++) {
-        let catAge = cats[i].age;
-        if (isNaN(catAge)) {
-            catAge = "Age Unknown";
+    let content = "";
+    for (let i = 0; i < cats.length; i++) {
+        
+        let catAge = "Age unknown"
+        if (cats[i].age !== undefined) {
+            catAge = cats[i].age;
         }
-        catsContainer = catsContainer + "<div><h5>" + cats[i].name + "</h5><p>" + catAge + "</p></div>";
+        
+        content += `<div>
+        <h5>${cats[i].name}</h5>
+        <p>${catAge}</p>
+        </div>`;
     }
-    return catsContainer;
+
+    return content;
 }
 
 let catsContainer = document.querySelector(".cat-container");
-
 catsContainer.innerHTML = createCats(cats);
